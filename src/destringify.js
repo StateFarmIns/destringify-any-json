@@ -39,3 +39,5 @@ function destringify(json) {
     //console.log('destringify = ', json);
     return json;
   }
+
+  module.exports = destringify;
