@@ -4,7 +4,7 @@
 //stringification can exist at any point.  The object will always
 //be returned fully parsed.  
 
-export function destringify(json) {
+function destringify(json) {
     while (typeof json === 'string') {
       json = JSON.parse(json);
     }
