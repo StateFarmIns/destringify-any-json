@@ -47,7 +47,6 @@
            to be stringified or destringified before being sent into the app.  This applies to unit/integration/manual
            testing.
 
-
         3. An applications that has multiple source of input that contain variable levels of strigification. 
            Especially if the app can be subscribed to and the level of stringification that is received in 
            future events is unknown.
