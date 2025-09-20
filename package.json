@@ -1,0 +1,38 @@
+{
+  "name": "destringify-any-json",
+  "version": "1.0.0",
+  "description": "A one size fits all solution to destringification. Handles any level of stringification in JSON objects.",
+  "main": "src/destringify.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/destringify.js"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StateFarmIns/destringify-any-json.git"
+  },
+  "keywords": [
+    "json",
+    "parse",
+    "destringify",
+    "stringify",
+    "object",
+    "parser"
+  ],
+  "author": "jkaq",
+  "license": "jkaq",
+  "bugs": {
+    "url": "https://github.com/StateFarmIns/destringify-any-json/issues"
+  },
+  "homepage": "https://github.com/StateFarmIns/destringify-any-json#readme",
+  "files": [
+    "src/destringify.js",
+    "README.md",
+    "LICENSE"
+  ]
+}
