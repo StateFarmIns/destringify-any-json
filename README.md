@@ -5,9 +5,10 @@
 
 ## What is the destringify function?
     The problem:
-        When AWS resources pass an event from one resource to the next; the resource wraps the event in meta data 
-        and stringifies it.  This is repeated each time a resource is passed. This how events that have 
-        variable levels of stringification get continually passed through an AWS flow.  
+        When AWS microservices pass an event from one service to the next; the service 
+        wraps the event in meta data and stringifies it.  This is repeated each time a 
+        resource is passed. This how events that have variable levels of stringification 
+        get continually passed through an distributed AWS flow.  
 
         An example of a log with single and triple levels of stringification.
 
@@ -31,16 +32,23 @@
         "SentTimestamp":"17382027","SequenceNumber":"18891737812463872","MessageGroupId":"m1","SenderId":"AIDAYRRVD2ENUBX",
         "MessageDeduplicationId":"91768beacb3c9690d0362422141784aaa38c90b"....
         
-        Due to the distributed nature of AWS infrastructure, there are a lot of logs/events like this.  
-        Logs can be single, double, triple, quadrupled, ect.. stringified and at various points within a json
+        Due to the distributed nature of AWS microservice infrastructure, there are a lot of logs/events like this.  
+        Logs can be single, double, triple, quadrupled, ect.. stringified at different levels within a json
         structure.
+    
+    The challenges:
+        1. During testing, whether automated or manual, the data must always be correctly strigified.
+        2. If a service is called by multiple resources, then input can have variable levels of
+           stringification.  
+        3. It can make the structures(from logs or elsewhere) difficult to read/edit.
 
     The solution:
         This function will always return a json object with no stringification.  It will fully parse any json object 
         regardless of the level of stringification at any level within a json object.
 
     Use cases:
-        1. Take a “wall of text" as input and convert it into something that is readable and editable.  
+        1. Include this code in a script that can take a “wall of text" as input and convert it into 
+           something that is readable and editable.  
 
         2. Called at the beginning of a lambda so that stringification is completely ignored.  
            This is especially useful when creating custom input for testing purposes.  The test input does not need 
@@ -50,6 +58,15 @@
         3. An applications that has multiple source of input that contain variable levels of strigification. 
            Especially if the app can be subscribed to and the level of stringification that is received in 
            future events is unknown.
+    
+```javascript
+// Example:
+// Import the destringify function
+import { destringify } from '@statefarmins/destringify-any-json';
+
+// Use it to parse any JSON structure with any level of stringification
+const destringifiedJSON = destringify(jsonStructure);
+```
 
 ## Contacts
     - Eric Schaumburg(Blaane15)
