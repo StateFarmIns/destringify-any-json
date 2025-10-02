@@ -7,10 +7,15 @@ on:
     # Uncomment the following lines if you want to publish only on version tags
     # tags:
     #   - 'v*.*.*'
+  workflow_dispatch:  # Allow manual triggering
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    # Add permissions required for provenance generation
+    permissions:
+      contents: read
+      id-token: write
     
     steps:
       - name: Checkout repository
@@ -29,9 +34,7 @@ jobs:
       #   run: npm test || echo "No tests defined"
       #   continue-on-error: true
 
-
-
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --provenance --access public
+        run: npm publish --access public --provenance
