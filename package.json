@@ -1,5 +1,5 @@
 {
-  "name": "destringify-any-json",
+  "name": "@statefarmins/destringify-any-json",
   "version": "1.0.0",
   "description": "A one size fits all solution to destringification. Handles any level of stringification in JSON objects.",
   "main": "src/destringify.js",
@@ -25,7 +25,7 @@
     "parser"
   ],
   "author": "jkaq",
-  "license": "jkaq",
+  "license": "SEE LICENCE IN LICENSE",
   "bugs": {
     "url": "https://github.com/StateFarmIns/destringify-any-json/issues"
   },
