@@ -22,7 +22,12 @@
     "destringify",
     "stringify",
     "object",
-    "parser"
+    "parser",
+    "aws",
+    "destributed-system",
+    "lambda",
+    "serverless",
+    "microservice"
   ],
   "author": "jkaq",
   "license": "SEE LICENCE IN LICENSE",
