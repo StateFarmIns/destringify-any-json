@@ -1,6 +1,6 @@
 {
   "name": "@statefarmins/destringify-any-json",
-  "version": "1.0.03",
+  "version": "1.0.4",
   "description": "A one size fits all solution to destringification. Handles any level of stringification in JSON objects.",
   "main": "src/destringify.js",
   "type": "module",
