@@ -5,32 +5,32 @@
 
 ## What is the destringify function?
     The problem:
-        When AWS microservices passES an event from one service to the next; the service 
+        When AWS microservices pass an event from one service to the next; the service 
         wraps the event in metadata and stringifies it.  This is repeated each time a 
         resource is passed. As a result, structures that have variable levels of stringification 
-        get continually passed through an distributed AWS flow.  
+        can get continually passed through a distributed AWS flow.  
 
         An example of a log with single and triple levels of stringification.
 
-        "data":{"Records":[{"messageId":"a59c0eb1-9f86-4e37-8942","receiptHandle":"AQEB95j==","body":"{\n \"Type\" : 
-        \"Notification\",\n \"MessageId\" : \"fd8e5d6c-fa6a-5571-9747-3d793a1a926c\",\n \"SequenceNumber\" : \"1000000\",\n 
-        \"TopicArn\" : \"arn:aws:sns:us-east-1:6:sf-telematics-trace-topic.fifo\",\n \"Message\" : \"
+        "data":{"Records":[{"messageId":"9999-99999-9999-9999","receiptHandle":"AQEB95j==","body":"{\n \"Type\" : 
+        \"Notification\",\n \"MessageId\" : \"fd8e5d6c-fa6a-ttttt-ttttt-tttt\",\n \"SequenceNumber\" : \"1000000\",\n 
+        \"TopicArn\" : \"arn:aws:sns:us-east-1:6:trace-topic.fifo\",\n \"Message\" : \"
         {\\\"event_code\\\":\\\"EE4220\\\",\\\"event_name\\\":\\\"Reminder-40\\\",
         \\\"source\\\":\\\"EnrollmentLambda-Whatever\\\",\\\"enroll_id\\\":\\\"xxxxx\\\",
         \\\"obj_id\\\":\\\"xxxxxx\\\",\\\"index\\\":\\\"xxxxxxxxxx\\\",
         \\\"book_id\\\":\\\"xxxxxxx\\\",\\\"product_code\\\":\\\"xx\\\",\\\"product_name\\\":\\\"XXXX\\\",
         \\\"reason_code\\\":\\\"XX-999999\\\",\\\"start\\\":\\\"1700-12-20\\\",
-        \\\"enrollment_effective_date\\\":\\\"1700-01-99\\\",\\\"end_date\\\":\\\"1600-xx-xx\\\",
-        \\\"enrollment_stop_date\\\":\\\"9999-xx-xx\\\",\\\"enrollment_complete_date\\\":\\\"2025-xx-xx\\\",
-        \\\"enrollment_consent_date\\\":\\\"2025-xx-xx\\\",\\\"event_id\\\":\\\"6591cdaa-d0d9-4672-b6d5-2ae5393700d2\\\",
+        \\\"eff_date\\\":\\\"1700-01-99\\\",\\\"end_date\\\":\\\"1600-xx-xx\\\",
+        \\\"enrollment_stop_date\\\":\\\"9999-xx-xx\\\",\\\"complete_date\\\":\\\"2025-xx-xx\\\",
+        \\\"enrollment_consent_date\\\":\\\"2025-xx-xx\\\",\\\"id\\\":\\\"6591cdaa-4672-b6d5-2ae5393700d2\\\",
         \\\"timestamp\\\":1738260015994}\",\n \"Timestamp\" : \"2025-01-30T18:00:16.004Z\",\n \"UnsubscribeURL\" : 
         \"https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&
-        SubscriptionArn=arn:aws:sns:us-east-1::sf-telematics-trace-test5-enrollment-topic.fifo:c62aa\",\n 
+        SubscriptionArn=arn:aws:sns:us-east-1::trace-test5-enrollment.fifo:c62aa\",\n 
         \"MessageAttributes\" : {\n \"eventTypeCode\" : {\"Type\":\"String\",\"Value\":\"E20\"},\n \"groupId\" : 
         {\"Type\":\"String\",\"Value\":\"Registration Reminder-40\"}\n }\n}","attributes":{"ApproximateReceiveCount":"3",
-        "AWSTraceHeader":"Root=1-679bbe24-1a9afbcc0a83d3fb;Parent=f8e463248a4c5;Sampled=1;Lineage=2:573fd71f:0",
-        "SentTimestamp":"17382027","SequenceNumber":"18891737812463872","MessageGroupId":"m1","SenderId":"AIDAYRRVD2ENUBX",
-        "MessageDeduplicationId":"91768beacb3c9690d0362422141784aaa38c90b"....
+        "AWSTraceHeader":"Root=1-679bbe24-xx;Parent=xx;Sampled=1;Lineage=2:xx:0",
+        "SentTimestamp":"1738","SequenceNumber":"xxxxx","MessageGroupId":"m1","SenderId":"eeeeeee",
+        "MessageDeduplicationId":"xxxxxxx"....
         
         Due to the distributed nature of AWS microservice infrastructure, there are a lot of logs/events like this.  
         Logs can be single, double, triple, quadrupled, ect.. stringified at different levels within a json
@@ -50,13 +50,13 @@
         1. Include this code in a script that can take a “wall of text" as input and convert it into 
            something that is readable and editable.  
 
-        2. Called at the beginning of a lambda so that stringification is completely ignored.  
+        2. Called at the beginning of a lambda so that stringification is ignored.  
            This is especially useful when creating custom input for testing purposes.  The test input does not need 
            to be stringified or destringified before being sent into the app.  This applies to unit/integration/manual
            testing.
 
         3. An application that has multiple sources of input that contain variable levels of strigification. 
-           Especially if the app can be subscribed to and the level of stringification that will be received is unknown.
+           Especially if the service can be subscribed to and the level of stringification that will be received is unknown.
     
 ```javascript
 // Example:
