@@ -69,4 +69,4 @@ const destringifiedJSON = destringify(jsonStructure);
 
 ## Contacts
     - Eric Schaumburg(Blaane15)
-    - Matthew Walden(mwalden2004)
+    - Matthew Walden(matthew-walden)
